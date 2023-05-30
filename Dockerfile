@@ -10,6 +10,7 @@ RUN apk update && apk add --no-cache supervisor wget unzip curl
 ENV UUID 058da4ec-7036-444b-bd5e-8329244d444e
 ENV VMESS_WSPATH /vmess
 ENV VLESS_WSPATH /vless
+ENV URL https://v2ray-jkw6.onrender.com
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY nginx.conf /etc/nginx/nginx.conf
