@@ -4,6 +4,18 @@
 		"error": "/var/log/nginx/error.log",
 		"loglevel": "warning"
 	},
+	"routing": {
+		"domainStrategy": "AsIs",
+		"rules": [
+			{
+				"type": "field",
+				"ip": [
+					"geoip:private"
+				],
+				"outboundTag": "block"
+			}
+		]
+	},
 	"inbounds": [{
 			"port": 10000,
 			"listen": "127.0.0.1",
@@ -16,7 +28,7 @@
 			},
 			"streamSettings": {
 				"network": "ws",
-				"security": "none"
+				"security": "none",
 				"wsSettings": {
 					"path": "VMESS_WSPATH"
 				}
