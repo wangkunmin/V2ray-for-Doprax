@@ -16,7 +16,7 @@
 			},
 			"streamSettings": {
 				"network": "ws",
-				"security": "none",
+				"security": "auto",
 				"wsSettings": {
 					"path": "VMESS_WSPATH"
 				}
