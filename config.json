@@ -1,20 +1,8 @@
 {
 	"log": {
-		"access": "/var/log/nginx/access.log",
-		"error": "/var/log/nginx/error.log",
+		"access": "/dev/null",
+		"error": "/dev/null",
 		"loglevel": "warning"
-	},
-	"routing": {
-		"domainStrategy": "AsIs",
-		"rules": [
-			{
-				"type": "field",
-				"ip": [
-					"geoip:private"
-				],
-				"outboundTag": "block"
-			}
-		]
 	},
 	"inbounds": [{
 			"port": 10000,
