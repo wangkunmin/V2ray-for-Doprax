@@ -1,9 +1,21 @@
 {
 	"log": {
-		"access": "/dev/null",
-		"error": "/dev/null",
+		"access": "/var/log/nginx/access.log",
+		"error": "/var/log/nginx/error.log",
 		"loglevel": "warning"
 	},
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
 	"inbounds": [{
 			"port": 10000,
 			"listen": "127.0.0.1",
@@ -16,6 +28,7 @@
 			},
 			"streamSettings": {
 				"network": "ws",
+				"security": "none"
 				"wsSettings": {
 					"path": "VMESS_WSPATH"
 				}
@@ -39,10 +52,14 @@
 			}
 		}
 	],
-	"outbounds": [{
-		"protocol": "freedom",
-		"settings": {}
-	}],
+	"outbounds": [ {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }],
 	"dns": {
 		"server": [
 			"8.8.8.8",
